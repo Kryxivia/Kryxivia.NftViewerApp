@@ -2,6 +2,7 @@ import { JsonRpcSigner, Web3Provider } from "@ethersproject/providers";
 import { useMemo } from "react";
 import ERC20 from "../abis/KxaTokenContract.json";
 import KxaStaking from "../abis/KxaStakingContract.json";
+import Nft from "../abis/NftContract.json";
 import { Contract } from "ethers";
 import { useWeb3React } from "@web3-react/core";
 
@@ -41,4 +42,8 @@ export function useTokenContract(ContractAddress: any) {
 
 export function useStakingContract(ContractAddress: any) {
     return useContract(ContractAddress, KxaStaking.abi);
+}
+
+export function useNftContract(ContractAddress: any) {
+  return useContract(ContractAddress, Nft.abi);
 }

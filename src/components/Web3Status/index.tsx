@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { UnsupportedChainIdError, useWeb3React } from "@web3-react/core";
 import { ABIs, NetworkContextName, TOKENS_BY_NETWORK } from "../../constants/misc";
 import { shortenAddress } from "../../utils";
