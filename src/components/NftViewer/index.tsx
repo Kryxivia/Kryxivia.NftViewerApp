@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useWeb3React } from "@web3-react/core";
 import { useNftContract } from "../../hooks/useContract";
 import Token from "./token";
+import NftCard from "./card";
 
 export const NFT_CONTRACT = process.env.REACT_APP_CONTRACT_NFT;
 
@@ -73,7 +74,6 @@ function useLoadAccountNFTs(account: string | undefined | null, tokenCount: numb
     return accountTokens;
 }
 
-
 const NftViewer: React.FC = () => {
     const { account } = useWeb3React();
 
@@ -82,27 +82,22 @@ const NftViewer: React.FC = () => {
     const accountNFTs = useLoadAccountNFTs(account, accountNFTsCount);
 
     return (
-        <>
-            <h1>{account}</h1>
-            <br/>
-            Total NFTs Minted: { totalSupply }
-            <br/>
-            <br/>
-            Account NFT Count: { accountNFTsCount }
-            <br/>
-            <br/>
-            Account NFTs:
+        <div className="nftPage">
+            <h1>
+                You have { accountNFTsCount } Kryxivia NFT{ accountNFTsCount === 1 ? '' : 's' }.
+            </h1>
+            <h3>
+                Total NFTs Minted: { totalSupply }
+            </h3>
+            <div className="nftContainer">
             { accountNFTs.map(
-                nft => <>
-                    <ul>
-                        <li>{ nft.id }</li>
-                        <li>{ nft.uri }</li>
-                    </ul>
-                    <br/>
+                (nft) => <>
+                    <NftCard ID={nft.id} IPFS_URI={nft.uri} />
                 </>
             )}
+            </div>
             <br/>
-        </>
+        </div>
     );
 };
 

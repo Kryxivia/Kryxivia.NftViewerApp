@@ -153,7 +153,18 @@ body:before{opacity:.3;content:'';position:fixed;left:0;top:0;width:100%;height:
 #app .alert.base{background-color:var(--bg);}
 #app .alert.success{background-color:rgb(var(--green));color:#201d1c;}
 
-
+/* nft card */
+.nftPage h1 { margin: 15px; }
+.nftPage h3 { margin: 15px; }
+.nftContainer{display: flex; flex-wrap: wrap;}
+.nftContainer .nftCard{width: 250px; border: 1px solid #ababab; border-radius: 10px; margin-right: 10px}
+.nftContainer .nftCard img{ border-top-left-radius: 10px; border-top-right-radius: 10px }
+.nftContainer .nftCard .details{ padding: 10px; }
+.nftContainer .nftCard .details div { margin-bottom: 5px; }
+.nftContainer .nftCard .details .header-container{ display: flex; font-size: 13px; color: #ababab }
+.nftContainer .nftCard .details .header-container span{width: 125px;}
+.nftContainer .nftCard .details .header-container .right{text-align: right;}
+.nftContainer .nftCard .details .description{ font-size: 14px;}
 /* form */
 
 .fm{--g:calc(10px + 5 * (100vw - 320px) / 1080);}
