@@ -146,51 +146,22 @@ body:before{opacity:.3;content:'';position:fixed;left:0;top:0;width:100%;height:
 #app h2{font-weight:bold;font-size:calc(16px + 2 * (100vw - 320px) / 1080);}
 #app .intro{font-size:calc(15px + 2 * (100vw - 320px) / 1080);line-height:1.3;margin-top:calc(10px + 3 * (100vw - 320px) / 1080);}
 #app .p{font-size:calc(13px + 1 * (100vw - 320px) / 1080);line-height:1.5;opacity:.7;}
-#app .rw{--n:6;--g:calc(3px + 5 * (100vw - 320px) / 1080);margin:calc(10px + 5 * (100vw - 320px) / 1080) calc(var(--g)*-1) 0;display:flex;flex-wrap:wrap;}
-#app .rw li{padding:var(--g);width:calc(100% / var(--n));}
-#app .rw div{background:var(--bg);border-radius:var(--radius);}
 #app .alert{font-size:14px;font-weight:bold;padding:16px 12px 12px;border-radius:var(--radius);left:0;top:0;width:100%;text-align:center;}
 #app .alert.base{background-color:var(--bg);}
 #app .alert.success{background-color:rgb(var(--green));color:#201d1c;}
 
 /* nft card */
-.nftPage h1 { margin: 15px; }
-.nftPage h3 { margin: 15px; }
+.nftPage h1{margin: 15px; }
+.nftPage h3{margin: 15px; }
 .nftContainer{display: flex; flex-wrap: wrap;}
 .nftContainer .nftCard{width: 250px; border: 1px solid #ababab; border-radius: 10px; margin-right: 10px}
-.nftContainer .nftCard img{ border-top-left-radius: 10px; border-top-right-radius: 10px }
-.nftContainer .nftCard .details{ padding: 10px; }
-.nftContainer .nftCard .details div { margin-bottom: 5px; }
+.nftContainer .nftCard img{border-top-left-radius: 10px; border-top-right-radius: 10px }
+.nftContainer .nftCard .details{padding: 10px; }
+.nftContainer .nftCard .details div{margin-bottom: 5px; }
 .nftContainer .nftCard .details .header-container{ display: flex; font-size: 13px; color: #ababab }
 .nftContainer .nftCard .details .header-container span{width: 125px;}
 .nftContainer .nftCard .details .header-container .right{text-align: right;}
-.nftContainer .nftCard .details .description{ font-size: 14px;}
-/* form */
-
-.fm{--g:calc(10px + 5 * (100vw - 320px) / 1080);}
-.fm fieldset{padding:calc(var(--g)*1.5) calc(var(--g)*2);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);}
-.fm fieldset + fieldset{margin-top:15px;}
-.fm legend{background-color:var(--bg);text-transform:uppercase;font-size:11px;border-radius:var(--radius);padding:3px 8px;font-weight:bold;}
-.fm .ins{display:flex;width:calc(100% + var(--g)*2);margin:calc(var(--g)*-1);}
-.fm .in{width:50%;padding:var(--g);}
-.fm .in label{font-weight:bold;font-size:calc(12px + 1 * (100vw - 320px) / 1080);}
-.fm .in label small{opacity:.7;font-style:italic;font-weight:normal;}
-.fm .in input{color:var(--primary_txt);margin-top:7px;padding:15px;font-weight:bold;width:100%;display:flex;align-items:center;background-color:var(--bg_blur);box-shadow:0 0 0 1px rgba(255,255,255,.05), 0 3px 10px rgba(0,0,0,.2);border-radius:var(--radius);backdrop-filter:var(--blur);}
-.fm .in input:disabled{color:var(--primary);}
-.fm .in input:not(:disabled){box-shadow:0 0 0 1px rgba(var(--primary_rgb),.2), 0 3px 10px rgba(0,0,0,.2);}
-.fm .inm{flex:1;}
-.fm .inx{width:auto;display:flex;align-items:flex-end;}
-.fm .stk{border-color:rgba(var(--primary_rgb),.8);}
-.fm .stk legend{background:linear-gradient(to right, var(--primary), var(--secondary));}
-.fm .stk .copy-block{line-height:120%; margin: 10px 0 10px 0;}
-.fm .stk-g{border-color:rgba(var(--green),.5);box-shadow:0 0 15px rgba(var(--green),.2), 0 0 15px rgba(var(--green),.3) inset;}
-.fm .stk-g legend{background-color:rgb(var(--green));color:var(--bg);box-shadow:0 0 25px rgba(var(--green),1);}
-.fm .stk-g input{color:rgb(var(--green))!important;box-shadow:0 0 0 1px rgba(var(--green), .1)!important;}
-.fm .stk-g .bt:disabled{background-color:rgb(var(--green))!important;color:var(--bg);cursor:not-allowed;opacity:.5;}
-.fm .stk-g .bt{background-color:rgb(var(--green));color:var(--bg);}
-.fm .stk-g .bt:hover{box-shadow:0 0 25px rgba(var(--green),1);}
-.fm .stk-g .bt small{display:block;font-size:10px;font-weight:normal;}
-.fm .stk-g .bt strong{font-size:14px;}
+.nftContainer .nftCard .details .description{font-size: 14px;}
 
 .mint {display: flex;justify-content: space-between;}
 .btmi{animation:mint 2s infinite linear;display:inline-block;}
