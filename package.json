@@ -1,6 +1,9 @@
 {
   "name": "kryxivia-nftviewerapp",
   "version": "0.1.0",
+  "engines": {
+    "node": "14.x"
+  },
   "private": true,
   "dependencies": {
     "@0xsequence/multicall": "^0.31.0",
