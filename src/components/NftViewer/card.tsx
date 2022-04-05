@@ -8,6 +8,12 @@ interface NftCardProps {
     IPFS_URI?: string,
 }
 
+interface NftAttribute {
+    display_type: string,
+    trait_type: string,
+    value: any
+}
+
 const ipfsURL = (uri: string | undefined | null) => {
     if (uri === undefined || uri === null) { return "" }
     const splitLink = uri.split("//");
@@ -15,10 +21,11 @@ const ipfsURL = (uri: string | undefined | null) => {
     return "https://ipfs.io/ipfs/" + docID
 }
 
-function useAttributeToken(id: number, uri: string | undefined) {
-    const [name, setName] = useState();
-    const [description, setDescription] = useState();
-    const [image, setImage] = useState();
+function useAttributeToken(id: number, uri: string | undefined): [string | undefined, string | undefined, string | undefined, NftAttribute[]] {
+    const [name, setName] = useState<string>();
+    const [description, setDescription] = useState<string>();
+    const [image, setImage] = useState<string>();
+    const [attributes, setAttributes] = useState<NftAttribute[]>([]);
 
     const { data } = useSWR(ipfsURL(uri), fetcher);
 
@@ -31,21 +38,54 @@ function useAttributeToken(id: number, uri: string | undefined) {
             setName(data.name);
             setDescription(data.description);
             setImage(data.image);
+            setAttributes(data.attributes);
         };
 
         fetchData();
-    }, [data, uri, setName, setDescription, setImage]);
-    return [name, description, image];
+    }, [data, uri, setName, setDescription, setImage, setAttributes]);
+    return [name, description, image, attributes];
 }
 
-
 const NftCard: React.FC<NftCardProps> = ({ID, IPFS_URI}) => {
+    const [isHover, setIsHover] = useState(true);
 
-    let [name, description, image] = useAttributeToken(ID, IPFS_URI);
+    let name: string | undefined;
+    let description: string | undefined;
+    let image: string | undefined;
+    let attributes: NftAttribute[] | [];
+
+    [name, description, image, attributes] = useAttributeToken(ID, IPFS_URI);
+
+    function formatTraitType(name: string) {
+        return name.replaceAll("Gem", "")
+    }
 
     return (
-        <div className="nftCard" key={ID}>
-            <img src={image} alt={name} />
+        <div className="nftCard" key={ID}
+             onMouseEnter={() => setIsHover(true)}
+             onMouseLeave={() => setIsHover(false)}
+        >
+            <div className={"imageContainer"}>
+                {isHover && (
+                <div className={"displaySendToGame"}>
+                    <div className={"attributes"}>
+                        {!(attributes.filter(a => a.trait_type !== "Creation").length === 0) && (
+                        <ul>
+                            <li>Attributes:</li>
+                            {(attributes).filter(a => a.trait_type !== "Creation").map((a: NftAttribute, index) => (
+                            <li key={index}>
+                                &nbsp;&nbsp;&nbsp;{formatTraitType(a.trait_type)} - {a.display_type === "BoostNumber" ? Math.round(a.value * 100) / 100 : a.value}
+                                <br/>
+                            </li>
+                        ))}
+                        </ul>
+                        )}
+                    </div>
+                    <button className={"bt bt-act"}>Send To Game</button>
+                </div>
+                )}
+                <img src={image} alt={name} />
+            </div>
             <div className="details">
                 <div className="name">
                     <strong>

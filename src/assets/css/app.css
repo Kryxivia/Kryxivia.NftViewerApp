@@ -155,7 +155,8 @@ body:before{opacity:.3;content:'';position:fixed;left:0;top:0;width:100%;height:
 .nftPage h3{margin: 15px; }
 .nftContainer{display: flex; flex-wrap: wrap; padding-left: 10px; }
 .nftContainer .nftCard{border: 1px solid #ababab; border-radius: 10px; margin-right: 10px; margin-bottom: 10px}
-.nftContainer .nftCard img{width: 100%; border-top-left-radius: 10px; border-top-right-radius: 10px }
+.nftContainer .nftCard .imageContainer{width: 100%; border-top-left-radius: 10px; border-top-right-radius: 10px}
+.nftContainer .nftCard .imageContainer img {border-top-left-radius: 10px; border-top-right-radius: 10px;}
 .nftContainer .nftCard .details{padding: 10px; }
 .nftContainer .nftCard .details div{margin-bottom: 5px; }
 .nftContainer .nftCard .details .header-container{ display: flex; font-size: 13px; color: #ababab }
@@ -163,13 +164,18 @@ body:before{opacity:.3;content:'';position:fixed;left:0;top:0;width:100%;height:
 .nftContainer .nftCard .details .header-container .right{text-align: right;}
 .nftContainer .nftCard .details .description{font-size: 14px;}
 
+.nftContainer .nftCard .displaySendToGame { background-color: rgba(0,0,0, 0.5); border-top-left-radius: 10px; border-top-right-radius: 10px; position: absolute; z-index: 1; height: 100%; width: 100% }
+.nftContainer .nftCard .displaySendToGame .attributes { height: calc(100% - 37px ); line-height: calc(100% - 37px ); padding: 5px; color: white; font-size: 0.85em; }
+.nftContainer .nftCard .displaySendToGame .attributes ul { display: inline-block; vertical-align: bottom; }
+.nftContainer .nftCard .displaySendToGame .attributes ul li { line-height: 14px; }
+.nftContainer .nftCard .displaySendToGame button { opacity: 1; margin-left: 5px; margin-right: 5px; width: calc(100% - 10px); height: 32px }
+
 @media screen and (max-width:600px)  {.nftContainer .nftCard { width: calc((100% - 20px) / 2);}}
 @media screen and (min-width:600px)  {.nftContainer .nftCard { width: calc((100% - 30px) / 3);}}
 @media screen and (min-width:900px)  {.nftContainer .nftCard { width: calc((100% - 40px) / 4);}}
 @media screen and (min-width:1200px) {.nftContainer .nftCard { width: calc((100% - 50px) / 5);}}
 @media screen and (min-width:1500px) {.nftContainer .nftCard { width: calc((100% - 60px) / 6);}}
-@media screen and (min-width:1800px) {.nftContainer .nftCard { width: calc((100% - 70px) / 7);}}
-@media screen and (min-width:2100px) {.nftContainer .nftCard { width: calc((100% - 80px) / 8);}}
+@media screen and (min-width:2020px) {.nftContainer .nftCard { width: calc((100% - 70px) / 7);}}
 
 .mint {display: flex;justify-content: space-between;}
 .btmi{animation:mint 2s infinite linear;display:inline-block;}
