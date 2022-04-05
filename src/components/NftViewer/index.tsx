@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useWeb3React } from "@web3-react/core";
 import { useNftContract } from "../../hooks/useContract";
 import Token from "./token";
 import NftCard from "./card";
+import { CHAIN_INFO } from "../../constants/chain";
 
-export const NFT_CONTRACT = process.env.REACT_APP_CONTRACT_NFT;
-
-function useLoadTotalSupply() {
+function useLoadTotalSupply(chainId: number) {
     const [ totalSupply, setTotalSupply ] = useState(0);
+    const NFT_CONTRACT = CHAIN_INFO[chainId].nftContractAddress;
     const nftContract = useNftContract(NFT_CONTRACT);
 
     useEffect(() => {
@@ -26,8 +25,9 @@ function useLoadTotalSupply() {
     return totalSupply;
 }
 
-function useLoadAccountNFTsCount(account: string | undefined | null) {
+function useLoadAccountNFTsCount(chainId: number, account: string | undefined | null) {
     const [ accountTokensCount, setAccountTokensCount ] = useState(0);
+    const NFT_CONTRACT = CHAIN_INFO[chainId].nftContractAddress;
     const nftContract = useNftContract(NFT_CONTRACT);
 
     useEffect(() => {
@@ -45,8 +45,9 @@ function useLoadAccountNFTsCount(account: string | undefined | null) {
     return accountTokensCount;
 }
 
-function useLoadAccountNFTs(account: string | undefined | null, tokenCount: number) {
+function useLoadAccountNFTs(chainId: number, account: string | undefined | null, tokenCount: number) {
     const [ accountTokens, setAccountTokens ] = useState<Token[]>([]);
+    const NFT_CONTRACT = CHAIN_INFO[chainId].nftContractAddress;
     const nftContract = useNftContract(NFT_CONTRACT);
 
     useEffect(() => {
@@ -74,12 +75,15 @@ function useLoadAccountNFTs(account: string | undefined | null, tokenCount: numb
     return accountTokens;
 }
 
-const NftViewer: React.FC = () => {
-    const { account } = useWeb3React();
+interface NftViewerProps {
+    CHAIN_ID: number,
+    ACCOUNT_ID: string,
+}
 
-    const totalSupply = useLoadTotalSupply();
-    const accountNFTsCount = useLoadAccountNFTsCount(account);
-    const accountNFTs = useLoadAccountNFTs(account, accountNFTsCount);
+const NftViewer: React.FC<NftViewerProps> = ({CHAIN_ID, ACCOUNT_ID}) => {
+    const totalSupply = useLoadTotalSupply(CHAIN_ID);
+    const accountNFTsCount = useLoadAccountNFTsCount(CHAIN_ID, ACCOUNT_ID);
+    const accountNFTs = useLoadAccountNFTs(CHAIN_ID, ACCOUNT_ID, accountNFTsCount);
 
     return (
         <div className="nftPage">
@@ -91,9 +95,8 @@ const NftViewer: React.FC = () => {
             </h3>
             <div className="nftContainer">
             { accountNFTs.map(
-                (nft) => <>
-                    <NftCard ID={nft.id} IPFS_URI={nft.uri} />
-                </>
+                (nft) =>
+                    <NftCard key={nft.id} ID={nft.id} IPFS_URI={nft.uri} />
             )}
             </div>
             <br/>

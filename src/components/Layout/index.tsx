@@ -4,7 +4,7 @@ import IllusTopR from "../../assets/img/top-h-r.png";
 import { Header } from "../Header";
 import { Outlet } from "react-router";
 import { useWeb3React } from "@web3-react/core";
-import { defaultChain } from "../Web3Status";
+import { ALL_SUPPORTED_CHAIN_IDS } from "../../constants/chain";
 import { CHAIN_INFO } from "../../constants/chain";
 import NftViewer from "../NftViewer";
 
@@ -15,12 +15,15 @@ const Layout = () => {
             <Header />
             <main id="m">
                 <div id="app">
-                    {account && chainId && defaultChain === (chainId as number) ? (
+                    { account && chainId && ALL_SUPPORTED_CHAIN_IDS.includes(chainId as number) ? (
                         <div>
-                            <NftViewer />
+                            <NftViewer
+                                CHAIN_ID={ chainId }
+                                ACCOUNT_ID={ account }
+                            />
                         </div>
                     ) : (
-                        <div className="alert base">Please switch to {CHAIN_INFO[defaultChain].label}</div>
+                        <div className="alert base">Please switch to {CHAIN_INFO[ALL_SUPPORTED_CHAIN_IDS[0]].label}</div>
                     )}
                     <div className="app-c">
                         <Outlet />

@@ -5,7 +5,7 @@ import invariant from 'tiny-invariant'
 
 interface NetworkConnectorArguments {
   urls: { [chainId: number]: string }
-  defaultChainId?: number
+  //defaultChainId?: number
 }
 
 // taken from ethers.js, compatible interface with web3 provider
@@ -174,16 +174,16 @@ export class NetworkConnector extends AbstractConnector {
   private readonly providers: { [chainId: number]: MiniRpcProvider }
   private currentChainId: number
 
-  constructor({ urls, defaultChainId }: NetworkConnectorArguments) {
-    invariant(
-      defaultChainId || Object.keys(urls).length === 1,
-      'defaultChainId is a required argument with >1 url'
-    )
+  constructor({ urls }: NetworkConnectorArguments) {
+    // invariant(
+    //   defaultChainId || Object.keys(urls).length === 1,
+    //   'defaultChainId is a required argument with >1 url'
+    // )
     super({
       supportedChainIds: Object.keys(urls).map((k): number => Number(k)),
     })
 
-    this.currentChainId = defaultChainId || Number(Object.keys(urls)[0])
+    this.currentChainId = Number(Object.keys(urls)[0])
     this.providers = Object.keys(urls).reduce<{
       [chainId: number]: MiniRpcProvider
     }>((accumulator, chainId) => {

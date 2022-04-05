@@ -153,15 +153,23 @@ body:before{opacity:.3;content:'';position:fixed;left:0;top:0;width:100%;height:
 /* nft card */
 .nftPage h1{margin: 15px; }
 .nftPage h3{margin: 15px; }
-.nftContainer{display: flex; flex-wrap: wrap;}
-.nftContainer .nftCard{width: 250px; border: 1px solid #ababab; border-radius: 10px; margin-right: 10px}
-.nftContainer .nftCard img{border-top-left-radius: 10px; border-top-right-radius: 10px }
+.nftContainer{display: flex; flex-wrap: wrap; padding-left: 10px; }
+.nftContainer .nftCard{border: 1px solid #ababab; border-radius: 10px; margin-right: 10px; margin-bottom: 10px}
+.nftContainer .nftCard img{width: 100%; border-top-left-radius: 10px; border-top-right-radius: 10px }
 .nftContainer .nftCard .details{padding: 10px; }
 .nftContainer .nftCard .details div{margin-bottom: 5px; }
 .nftContainer .nftCard .details .header-container{ display: flex; font-size: 13px; color: #ababab }
 .nftContainer .nftCard .details .header-container span{width: 125px;}
 .nftContainer .nftCard .details .header-container .right{text-align: right;}
 .nftContainer .nftCard .details .description{font-size: 14px;}
+
+@media screen and (max-width:600px)  {.nftContainer .nftCard { width: calc((100% - 20px) / 2);}}
+@media screen and (min-width:600px)  {.nftContainer .nftCard { width: calc((100% - 30px) / 3);}}
+@media screen and (min-width:900px)  {.nftContainer .nftCard { width: calc((100% - 40px) / 4);}}
+@media screen and (min-width:1200px) {.nftContainer .nftCard { width: calc((100% - 50px) / 5);}}
+@media screen and (min-width:1500px) {.nftContainer .nftCard { width: calc((100% - 60px) / 6);}}
+@media screen and (min-width:1800px) {.nftContainer .nftCard { width: calc((100% - 70px) / 7);}}
+@media screen and (min-width:2100px) {.nftContainer .nftCard { width: calc((100% - 80px) / 8);}}
 
 .mint {display: flex;justify-content: space-between;}
 .btmi{animation:mint 2s infinite linear;display:inline-block;}
@@ -178,38 +186,27 @@ body:before{opacity:.3;content:'';position:fixed;left:0;top:0;width:100%;height:
 /*----------------------------------------------------< MEDIA QUERIES >---------------------------------------------------*/
 
 @media screen and (max-width:980px){
-
   #m .m-r{display:none;}
 
   #h .bt span{display:none;}
   #h .bt svg{margin-left:0;top:0;left:-1px;transform:scale(1.2);}
   #h a.bt{--w:calc(45px + 5 * (100vw - 320px) / 1080);padding:0;width:var(--w);height:var(--w);}
-
 }
 @media screen and (max-width:700px){
-
   #h .bt-has{display:none;}
-
 }
 @media screen and (max-width:600px){
-
   #app .rw{--n:3;}
-
   .fm .ins{display:block;}
   .fm .in{width:100%;}
-
 }
 @media screen and (max-width:500px){
-
   #h .lg{width:calc(150px + 20 * (100vw - 320px) / 1080);}
   #h a.bt{--w:calc(35px + 3 * (100vw - 320px) / 1080);}
   #h .bt svg{transform:scale(1);}
 
   #m{padding-top:calc(90px + 15 * (100vw - 320px) / 1080);}
-
 }
 @media screen and (max-width:360px){
-
   #app .rw{--n:2;}
-
 }
