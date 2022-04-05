@@ -7,6 +7,7 @@ interface NftCardProps {
     NFT_ID: number,
     IPFS_URI?: string,
     FN_SEND_TO_GAME: any,
+    ENABLE_SEND: boolean
 }
 
 interface NftAttribute {
@@ -44,7 +45,7 @@ function useAttributeToken(id: number, uri: string | undefined): [string | undef
     return [name, description, image, attributes];
 }
 
-const NftCard: React.FC<NftCardProps> = ({NFT_ID, IPFS_URI, FN_SEND_TO_GAME}) => {
+const NftCard: React.FC<NftCardProps> = ({NFT_ID, IPFS_URI, FN_SEND_TO_GAME, ENABLE_SEND}) => {
     const [isHover, setIsHover] = useState(false)
     const [isSendingToGame, setIsSendingToGame] = useState(false)
 
@@ -62,7 +63,6 @@ const NftCard: React.FC<NftCardProps> = ({NFT_ID, IPFS_URI, FN_SEND_TO_GAME}) =>
     async function sendNftToGame(e: any) {
         e.preventDefault();
         FN_SEND_TO_GAME(NFT_ID, setIsSendingToGame);
-        // FN_SEND_TO_GAME(97, "0x7Ab2dBfA4545668Dae581C47b63B6e2ff134536a")
     }
 
     return (
@@ -86,13 +86,15 @@ const NftCard: React.FC<NftCardProps> = ({NFT_ID, IPFS_URI, FN_SEND_TO_GAME}) =>
                         </ul>
                         )}
                     </div>
-                    <button
-                        className={"bt bt-act"}
-                        onClick={(e) => sendNftToGame(e)}
-                        disabled={isSendingToGame}
-                    >
-                        {isSendingToGame ? "Sending..." : "Send To Game" }
-                    </button>
+                    {ENABLE_SEND && (
+                        <button
+                            className={"bt bt-act"}
+                            onClick={(e) => sendNftToGame(e)}
+                            disabled={isSendingToGame}
+                        >
+                            {isSendingToGame ? "Sending..." : "Send To Game" }
+                        </button>
+                    )}
                 </div>
                 )}
                 <img src={image} alt={name} />

@@ -113,7 +113,7 @@ const NftViewer: React.FC<NftViewerProps> = ({CHAIN_ID, ACCOUNT_ID}) => {
             <div className="nftContainer">
             { accountNFTs.map(
                 (nft) =>
-                    <NftCard key={nft.id} NFT_ID={nft.id} IPFS_URI={nft.uri} FN_SEND_TO_GAME={sendNftToGame}/>
+                    <NftCard key={nft.id} NFT_ID={nft.id} IPFS_URI={nft.uri} FN_SEND_TO_GAME={sendNftToGame} ENABLE_SEND={GAME_ADDRESS ? true : false}/>
             )}
             </div>
             <br/>
