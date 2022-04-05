@@ -5,7 +5,7 @@ import Token from "./token";
 import NftCard from "./card";
 import { CHAIN_INFO } from "../../constants/chain";
 
-function useLoadTotalSupply(chainId: number) {
+function useLoadTotalSupply(chainId: number, eventCount: number) {
     const [ totalSupply, setTotalSupply ] = useState(0);
     const NFT_CONTRACT = CHAIN_INFO[chainId].nftContractAddress;
     const nftContract = useNftContract(NFT_CONTRACT);
@@ -21,12 +21,12 @@ function useLoadTotalSupply(chainId: number) {
         };
 
         fetchData();
-    }, [nftContract]);
+    }, [chainId, nftContract, eventCount]);
 
     return totalSupply;
 }
 
-function useLoadAccountNFTsCount(chainId: number, account: string | undefined | null) {
+function useLoadAccountNFTsCount(chainId: number, account: string | undefined | null, eventCount: number) {
     const [ accountTokensCount, setAccountTokensCount ] = useState(0);
     const NFT_CONTRACT = CHAIN_INFO[chainId].nftContractAddress;
     const nftContract = useNftContract(NFT_CONTRACT);
@@ -42,11 +42,11 @@ function useLoadAccountNFTsCount(chainId: number, account: string | undefined | 
         };
 
         fetchData();
-    }, [nftContract, account]);
+    }, [chainId, nftContract, account, eventCount]);
     return accountTokensCount;
 }
 
-function useLoadAccountNFTs(chainId: number, account: string | undefined | null, tokenCount: number) {
+function useLoadAccountNFTs(chainId: number, account: string | undefined | null, tokenCount: number, eventCount: number) {
     const [ accountTokens, setAccountTokens ] = useState<Token[]>([]);
     const NFT_CONTRACT = CHAIN_INFO[chainId].nftContractAddress;
     const nftContract = useNftContract(NFT_CONTRACT);
@@ -72,7 +72,7 @@ function useLoadAccountNFTs(chainId: number, account: string | undefined | null,
         };
 
         fetchData();
-    }, [nftContract, account, tokenCount])
+    }, [nftContract, account, tokenCount, eventCount])
     return accountTokens;
 }
 
@@ -82,10 +82,12 @@ interface NftViewerProps {
 }
 
 const NftViewer: React.FC<NftViewerProps> = ({CHAIN_ID, ACCOUNT_ID}) => {
+    const [ eventCount, setEventCount ] = useState<number>(0);
+
     const {library} = useWeb3React();
-    const totalSupply = useLoadTotalSupply(CHAIN_ID);
-    let accountNFTsCount = useLoadAccountNFTsCount(CHAIN_ID, ACCOUNT_ID);
-    let accountNFTs = useLoadAccountNFTs(CHAIN_ID, ACCOUNT_ID, accountNFTsCount);
+    const totalSupply = useLoadTotalSupply(CHAIN_ID, eventCount);
+    let accountNFTsCount = useLoadAccountNFTsCount(CHAIN_ID, ACCOUNT_ID, eventCount);
+    let accountNFTs = useLoadAccountNFTs(CHAIN_ID, ACCOUNT_ID, accountNFTsCount, eventCount);
 
     const NFT_CONTRACT_ADDRESS = CHAIN_INFO[CHAIN_ID].nftContractAddress;
     const GAME_ADDRESS = CHAIN_INFO[CHAIN_ID].gameAddress;
@@ -96,10 +98,8 @@ const NftViewer: React.FC<NftViewerProps> = ({CHAIN_ID, ACCOUNT_ID}) => {
         const transferFrom = await nftContract.transferFrom(ACCOUNT_ID, GAME_ADDRESS, nftId);
         fnSendingToGame(true)
         await library.waitForTransaction(transferFrom.hash, 2);
+        setEventCount(eventCount + 1)
         console.log("Done --- transaction succeeded. ")
-        // refresh the data...
-        // accountNFTsCount = useLoadAccountNFTsCount(CHAIN_ID, ACCOUNT_ID);
-        // accountNFTs = useLoadAccountNFTs(CHAIN_ID, ACCOUNT_ID, accountNFTsCount);
     }
 
     return (
