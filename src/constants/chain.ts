@@ -18,6 +18,7 @@ export type SupportedL1ChainId = typeof L1_CHAIN_IDS[number]
 export interface L1ChainInfo {
   readonly id: number
   readonly nftContractAddress: string
+  readonly gameAddress: string
   readonly blockWaitMsBeforeWarning?: number
   readonly explorer: string
   readonly label: string
@@ -38,6 +39,7 @@ export const CHAIN_INFO: ChainInfo = {
   [SupportedChainId.MAINNET]: {
     id: 56,
     nftContractAddress: "0x6e2722dbaa4a1bd9a7c8c5060af396460e133001",
+    gameAddress: "",
     explorer: 'https://bscscan.com/',
     label: 'Binance Smart Chain Mainnet',
     rpcUrls: ['https://bsc-dataseed.binance.org/', 'https://bsc-dataseed1.defibit.io/'],
@@ -46,6 +48,7 @@ export const CHAIN_INFO: ChainInfo = {
   [SupportedChainId.TESTNET]: {
     id: 97,
     nftContractAddress: "0xc903de9b38dca27f269d7f7890d787d398b8c991",
+    gameAddress: "0xD13899509020119c77F8aE93243Fe9Ab715a125C",
     explorer: 'https://testnet.bscscan.com/',
     label: 'Binance Smart Chain Testnet',
     rpcUrls: ['https://data-seed-prebsc-1-s1.binance.org:8545/', 'https://data-seed-prebsc-2-s1.binance.org:8545/'],

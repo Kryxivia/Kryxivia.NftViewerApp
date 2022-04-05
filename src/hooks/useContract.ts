@@ -17,7 +17,7 @@ export function getProviderOrSigner(library: Web3Provider, account?: string): We
 export default function useContract<T extends Contract = Contract>(
     address: string,
     ABI: any
-  ): T | null {
+  ): T {
     const { library, account, chainId } = useWeb3React()
   
     return useMemo(() => {

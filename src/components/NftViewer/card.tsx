@@ -4,8 +4,9 @@ import useSWR from "swr";
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 interface NftCardProps {
-    ID: number,
+    NFT_ID: number,
     IPFS_URI?: string,
+    FN_SEND_TO_GAME: any,
 }
 
 interface NftAttribute {
@@ -31,10 +32,7 @@ function useAttributeToken(id: number, uri: string | undefined): [string | undef
 
     useEffect(() => {
         const fetchData = async () => {
-            if (data === null || data === undefined) {
-                console.log('no data - returning...', uri)
-                return;
-            }
+            if (data === null || data === undefined) { return }
             setName(data.name);
             setDescription(data.description);
             setImage(data.image);
@@ -46,22 +44,29 @@ function useAttributeToken(id: number, uri: string | undefined): [string | undef
     return [name, description, image, attributes];
 }
 
-const NftCard: React.FC<NftCardProps> = ({ID, IPFS_URI}) => {
-    const [isHover, setIsHover] = useState(true);
+const NftCard: React.FC<NftCardProps> = ({NFT_ID, IPFS_URI, FN_SEND_TO_GAME}) => {
+    const [isHover, setIsHover] = useState(false)
+    const [isSendingToGame, setIsSendingToGame] = useState(false)
 
     let name: string | undefined;
     let description: string | undefined;
     let image: string | undefined;
     let attributes: NftAttribute[] | [];
 
-    [name, description, image, attributes] = useAttributeToken(ID, IPFS_URI);
+    [name, description, image, attributes] = useAttributeToken(NFT_ID, IPFS_URI);
 
     function formatTraitType(name: string) {
         return name.replaceAll("Gem", "")
     }
 
+    async function sendNftToGame(e: any) {
+        e.preventDefault();
+        FN_SEND_TO_GAME(NFT_ID, setIsSendingToGame);
+        // FN_SEND_TO_GAME(97, "0x7Ab2dBfA4545668Dae581C47b63B6e2ff134536a")
+    }
+
     return (
-        <div className="nftCard" key={ID}
+        <div className="nftCard" key={NFT_ID}
              onMouseEnter={() => setIsHover(true)}
              onMouseLeave={() => setIsHover(false)}
         >
@@ -81,7 +86,13 @@ const NftCard: React.FC<NftCardProps> = ({ID, IPFS_URI}) => {
                         </ul>
                         )}
                     </div>
-                    <button className={"bt bt-act"}>Send To Game</button>
+                    <button
+                        className={"bt bt-act"}
+                        onClick={(e) => sendNftToGame(e)}
+                        disabled={isSendingToGame}
+                    >
+                        {isSendingToGame ? "Sending..." : "Send To Game" }
+                    </button>
                 </div>
                 )}
                 <img src={image} alt={name} />
@@ -97,7 +108,7 @@ const NftCard: React.FC<NftCardProps> = ({ID, IPFS_URI}) => {
                 </div>
                 <div className="header-container">
                 <span className="left">
-                    NFT ID: { ID }
+                    NFT ID: { NFT_ID }
                 </span>
                     <span className="right">
                     <a href={ipfsURL(IPFS_URI || "")} target="_blank" rel="noreferrer">IPFS Link</a>

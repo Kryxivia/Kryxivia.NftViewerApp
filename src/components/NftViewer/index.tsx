@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useWeb3React } from "@web3-react/core";
 import { useNftContract } from "../../hooks/useContract";
 import Token from "./token";
 import NftCard from "./card";
@@ -81,9 +82,25 @@ interface NftViewerProps {
 }
 
 const NftViewer: React.FC<NftViewerProps> = ({CHAIN_ID, ACCOUNT_ID}) => {
+    const {library} = useWeb3React();
     const totalSupply = useLoadTotalSupply(CHAIN_ID);
-    const accountNFTsCount = useLoadAccountNFTsCount(CHAIN_ID, ACCOUNT_ID);
-    const accountNFTs = useLoadAccountNFTs(CHAIN_ID, ACCOUNT_ID, accountNFTsCount);
+    let accountNFTsCount = useLoadAccountNFTsCount(CHAIN_ID, ACCOUNT_ID);
+    let accountNFTs = useLoadAccountNFTs(CHAIN_ID, ACCOUNT_ID, accountNFTsCount);
+
+    const NFT_CONTRACT_ADDRESS = CHAIN_INFO[CHAIN_ID].nftContractAddress;
+    const GAME_ADDRESS = CHAIN_INFO[CHAIN_ID].gameAddress;
+    const nftContract = useNftContract(NFT_CONTRACT_ADDRESS);
+
+    async function sendNftToGame(nftId: number, fnSendingToGame: any) {
+        console.log("sending id... " + nftId)
+        const transferFrom = await nftContract.transferFrom(ACCOUNT_ID, GAME_ADDRESS, nftId);
+        fnSendingToGame(true)
+        await library.waitForTransaction(transferFrom.hash, 2);
+        console.log("Done --- transaction succeeded. ")
+        // refresh the data...
+        // accountNFTsCount = useLoadAccountNFTsCount(CHAIN_ID, ACCOUNT_ID);
+        // accountNFTs = useLoadAccountNFTs(CHAIN_ID, ACCOUNT_ID, accountNFTsCount);
+    }
 
     return (
         <div className="nftPage">
@@ -96,7 +113,7 @@ const NftViewer: React.FC<NftViewerProps> = ({CHAIN_ID, ACCOUNT_ID}) => {
             <div className="nftContainer">
             { accountNFTs.map(
                 (nft) =>
-                    <NftCard key={nft.id} ID={nft.id} IPFS_URI={nft.uri} />
+                    <NftCard key={nft.id} NFT_ID={nft.id} IPFS_URI={nft.uri} FN_SEND_TO_GAME={sendNftToGame}/>
             )}
             </div>
             <br/>
