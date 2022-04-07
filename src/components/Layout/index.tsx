@@ -23,7 +23,16 @@ const Layout = () => {
                             />
                         </div>
                     ) : (
-                        <div className="alert base">Please switch to {CHAIN_INFO[ALL_SUPPORTED_CHAIN_IDS[0]].label}</div>
+                        <div className="alert base">
+                            Please switch to Binance Smart Chain Mainnet.
+                            <br/>
+                            Or if you are playing on Alpha, Binance Smart Chain Testnet.
+                            <br/><br/>
+                            <a href={"https://academy.binance.com/en/articles/connecting-metamask-to-binance-smart-chain"} target={"_blank"}>
+                                <u>Instructions for Configuring Metamask.</u>
+                            </a>
+                        </div>
+
                     )}
                     <div className="app-c">
                         <Outlet />
