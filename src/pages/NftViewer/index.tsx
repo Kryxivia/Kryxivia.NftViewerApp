@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useOutletContext } from 'react-router-dom';
 import { useWeb3React } from "@web3-react/core";
 import { useNftContract } from "../../hooks/useContract";
 import Token from "./token";
 import NftCard from "./card";
 import { CHAIN_INFO } from "../../constants/chain";
+import {accountContext} from "../../constants/context"
 
 function useLoadTotalSupply(chainId: number, eventCount: number) {
     const [ totalSupply, setTotalSupply ] = useState(0);
@@ -12,16 +14,14 @@ function useLoadTotalSupply(chainId: number, eventCount: number) {
 
     useEffect(() => {
         const fetchData = async () => {
-            if (nftContract == null) {
-                return;
-            }
+            if (nftContract === null) { return; }
             const resultTotalSupply = await nftContract.totalSupply();
             const totalSupply = parseInt(resultTotalSupply);
             setTotalSupply(totalSupply);
         };
 
         fetchData();
-    }, [chainId, nftContract, eventCount]);
+    }, [nftContract, chainId, eventCount]);
 
     return totalSupply;
 }
@@ -33,16 +33,14 @@ function useLoadAccountNFTsCount(chainId: number, account: string | undefined | 
 
     useEffect(() => {
         const fetchData = async () => {
-            if (nftContract == null) {
-                return;
-            }
+            if (nftContract === null) { return; }
             const resultAccountTokensCount = await nftContract.balanceOf(account);
             const accountTokensCount = parseInt(resultAccountTokensCount);
             setAccountTokensCount(accountTokensCount);
         };
 
         fetchData();
-    }, [chainId, nftContract, account, eventCount]);
+    }, [nftContract, chainId, account, eventCount]);
     return accountTokensCount;
 }
 
@@ -53,9 +51,7 @@ function useLoadAccountNFTs(chainId: number, account: string | undefined | null,
 
     useEffect(() => {
         const fetchData = async () => {
-            if (nftContract == null) {
-                return;
-            }
+            if (nftContract === null) { return; }
             const tokenAccumulator: Token[] = [];
             for (let i = 0; i < tokenCount; i++) {
                 const responseTokenId = await nftContract.tokenOfOwnerByIndex(account, i);
@@ -76,12 +72,10 @@ function useLoadAccountNFTs(chainId: number, account: string | undefined | null,
     return accountTokens;
 }
 
-interface NftViewerProps {
-    CHAIN_ID: number,
-    ACCOUNT_ID: string,
-}
-
-const NftViewer: React.FC<NftViewerProps> = ({CHAIN_ID, ACCOUNT_ID}) => {
+const NftViewer: React.FC = () => {
+    const context = useOutletContext<accountContext>();
+    const CHAIN_ID = context.chainId
+    const ACCOUNT_ID = context.accountId
     const [ eventCount, setEventCount ] = useState<number>(0);
 
     const {library} = useWeb3React();
