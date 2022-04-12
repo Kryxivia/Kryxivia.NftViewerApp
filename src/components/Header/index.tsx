@@ -41,7 +41,7 @@ export const Header: React.FC = () => {
                             </li>
                             <li>
                                 <CustomLink to="/mint-firework">
-                                    <span>Mint Alpha Firework</span>
+                                    <span>Alpha Firework</span>
                                 </CustomLink>
                             </li>
                         </ul>

@@ -2,7 +2,7 @@ import React from "react";
 import { StakingStats } from "./StakingStats";
 import { StakeKxa } from "./StakeKxa";
 import { StakedKxa } from "./StakedKxa";
-import { Rewards } from "./Rewards";
+import { FireworkRewards } from "../../components/FireworkRewards";
 import { ALL_SUPPORTED_CHAIN_IDS } from "../../constants/chain";
 import {accountContext} from "../../constants/context"
 import {useOutletContext} from "react-router-dom";
@@ -47,7 +47,7 @@ const Staking: React.FC = () => {
                 </p>
             </div>
             <h2>Discover Alpha NFT Rewards on Kryxivia !</h2>
-            <Rewards />
+            <FireworkRewards />
             <h2>Stake your KXA Token</h2>
             <form className="fm">
                 {!accountId && chainId && <StakingStats chainId={chainId} />}

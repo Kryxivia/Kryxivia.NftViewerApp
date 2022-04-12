@@ -5,9 +5,11 @@ import { Header } from "../Header";
 import { Outlet } from "react-router-dom";
 import { ALL_SUPPORTED_CHAIN_IDS } from "../../constants/chain";
 import {useWeb3React} from "@web3-react/core";
+import WalletService from "../../services/walletService";
 
 const Layout: React.FC = () => {
     const { account, chainId } = useWeb3React();
+    const isLoggedIn = WalletService.verifySessionIntegrity(account || "");
     return (
         <>
             <Header />
@@ -21,7 +23,9 @@ const Layout: React.FC = () => {
                                     This is all test data. Nothing will transfer to mainnet.
                                 </div>
                             )}
-                            <Outlet context={{ chainId: chainId, accountId: account }}/>
+                            <div className={"app-c"}>
+                                <Outlet context={{ chainId: chainId, accountId: account }}/>
+                            </div>
                         </>
                     ) : (
                         <div className="alert base">

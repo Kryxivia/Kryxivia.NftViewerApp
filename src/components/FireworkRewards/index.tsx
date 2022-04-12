@@ -1,12 +1,12 @@
 import React from 'react'
-import Tier1 from "../../../assets/img/Tier_1.mp4";
-import Tier2 from "../../../assets/img/Tier_2.mp4";
-import Tier3 from "../../../assets/img/Tier_3.mp4";
-import Tier4 from "../../../assets/img/Tier_4.mp4";
-import Tier5 from "../../../assets/img/Tier_5.mp4";
-import Tier6 from "../../../assets/img/Tier_6.mp4";
+import Tier1 from "../../assets/img/Tier_1.mp4";
+import Tier2 from "../../assets/img/Tier_2.mp4";
+import Tier3 from "../../assets/img/Tier_3.mp4";
+import Tier4 from "../../assets/img/Tier_4.mp4";
+import Tier5 from "../../assets/img/Tier_5.mp4";
+import Tier6 from "../../assets/img/Tier_6.mp4";
 
-export const Rewards = () => {
+export const FireworkRewards = () => {
         return (
             <ul className="rw">
                     <li>
