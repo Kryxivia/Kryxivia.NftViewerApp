@@ -3,7 +3,7 @@ import { CHAIN_INFO } from "../../constants/chain";
 import {useOutletContext} from "react-router-dom";
 import {accountContext} from "../../constants/context";
 import {useNftBundleContract} from "../../hooks/useContract";
-import {BigNumber} from "ethers";
+import {BigNumber, Contract} from "ethers";
 import BoxView from "./boxView";
 
 export interface Box {
@@ -21,6 +21,8 @@ export function useBundleList(chainId: number) {
 
     useEffect(() => {
         const getBundles = async () => {
+            if (!nftBundles)
+                return;
 
             const numOfBoxes = await nftBundles.boxNamesLength()
             let boxes = []
@@ -69,11 +71,18 @@ export const Bundle = () => {
     return (
         <>
             <h1>Buy NFT Bundles</h1>
-            <div className={"bundleContainer"}>
-                {bundles.map((bundle, index) => (
-                    <BoxView key={index} boxName={bundle.name} price={bundle.price} fn_buy={buyBundle} />
-                ))}
-            </div>
+            {nftBundles === null && (
+                <>
+                    <h2>Coming soon to mainnet. Currently Alpha testing this feature on testnet.</h2>
+                </>
+            )}
+            {nftBundles !== null && (
+                <div className={"bundleContainer"}>
+                    {bundles.map((bundle, index) => (
+                        <BoxView key={index} boxName={bundle.name} price={bundle.price} fn_buy={buyBundle} />
+                    ))}
+                </div>
+            )}
         </>
     );
 };
