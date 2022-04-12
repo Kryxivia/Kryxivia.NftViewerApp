@@ -3,6 +3,7 @@ import { useMemo } from "react";
 import ERC20 from "../abis/KxaTokenContract.json";
 import KxaStaking from "../abis/KxaStakingContract.json";
 import Nft from "../abis/NftContract.json";
+import Bundle from "../abis/KryxiviaMysteryBoxes.json";
 import { Contract } from "ethers";
 import { useWeb3React } from "@web3-react/core";
 
@@ -36,14 +37,18 @@ export default function useContract<T extends Contract = Contract>(
     }, [address, ABI, library, account]) as T
   }
 
-export function useTokenContract(ContractAddress: any) {
+export function useTokenContract(ContractAddress: string) {
     return useContract(ContractAddress, ERC20.abi);
 }
 
-export function useStakingContract(ContractAddress: any) {
+export function useStakingContract(ContractAddress: string) {
     return useContract(ContractAddress, KxaStaking.abi);
 }
 
-export function useNftContract(ContractAddress: any) {
+export function useNftContract(ContractAddress: string) {
   return useContract(ContractAddress, Nft.abi);
+}
+
+export function useNftBundleContract(ContractAddress: string) {
+  return useContract(ContractAddress, Bundle.abi);
 }

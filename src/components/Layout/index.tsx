@@ -9,7 +9,7 @@ import WalletService from "../../services/walletService";
 
 const Layout: React.FC = () => {
     const { account, chainId } = useWeb3React();
-    const isLoggedIn = WalletService.verifySessionIntegrity(account || "");
+    WalletService.verifySessionIntegrity(account || "");
     return (
         <>
             <Header />

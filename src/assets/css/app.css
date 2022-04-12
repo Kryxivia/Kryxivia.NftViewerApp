@@ -198,6 +198,11 @@ body:before{opacity:.3;content:'';position:fixed;left:0;top:0;width:100%;height:
 .nftContainer .nftCard .displaySendToGame .attributes ul li { line-height: 14px; }
 .nftContainer .nftCard .displaySendToGame button { opacity: 1; margin-left: 5px; margin-right: 5px; width: calc(100% - 10px); height: 32px }
 
+.bundleContainer {display: inline-block; text-align: center}
+.bundleContainer .bundleCard {border: 1px solid #ababab; border-radius: 10px; margin-right: 10px; margin-bottom: 10px; padding: 20px}
+.bundleContainer .bundleCard .bundleCardTitle { font-size: 1.2em; margin-bottom: 20px; }
+.bundleContainer .bundleCard .bundleCardContent {}
+
 @media screen and (max-width:600px)  {.nftContainer .nftCard { width: calc((100% - 20px) / 2);}}
 @media screen and (min-width:600px)  {.nftContainer .nftCard { width: calc((100% - 30px) / 3);}}
 @media screen and (min-width:900px)  {.nftContainer .nftCard { width: calc((100% - 40px) / 4);}}

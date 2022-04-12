@@ -21,6 +21,7 @@ export interface L1ChainInfo {
   readonly nftContractAddress: string
   readonly stakingContractAddress: string
   readonly gameAddress: string
+  readonly nftBundles: string
   readonly blockWaitMsBeforeWarning?: number
   readonly explorer: string
   readonly apiURL: string
@@ -45,6 +46,7 @@ export const CHAIN_INFO: ChainInfo = {
     nftContractAddress: "0x6e2722dbaa4a1bd9a7c8c5060af396460e133001",
     stakingContractAddress: "0x1be0b4f77b4f6cA12e6D909322990944168Cb5B0",
     gameAddress: "",
+    nftBundles: "",
     explorer: 'https://bscscan.com/',
     apiURL: "https://kryx-app-web-api.azurewebsites.net",
     label: 'Binance Smart Chain',
@@ -57,6 +59,7 @@ export const CHAIN_INFO: ChainInfo = {
     nftContractAddress: "0xc903de9b38dca27f269d7f7890d787d398b8c991",
     stakingContractAddress: "0x57613EeE7Fb9E3B311E1Fe1BF7B42b664f65AC89",
     gameAddress: "0xD13899509020119c77F8aE93243Fe9Ab715a125C",
+    nftBundles: "0x4A67108DF75A841D725e8b7C88d729A7Ed451c01",
     explorer: 'https://testnet.bscscan.com/',
     apiURL: "https://kryx-app-web-api.azurewebsites.net",
     label: 'Binance Smart Chain Testnet',

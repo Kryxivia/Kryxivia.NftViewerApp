@@ -4,7 +4,8 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Layout from "./components/Layout";
 import NftViewer from "./pages/NftViewer";
 import Staking from "./pages/Staking/Staking";
-import MintFirework from "./pages/MintFirework"
+import MintFirework from "./pages/MintFirework";
+import Bundle from "./pages/Bundle";
 
 function App() {
     return (
@@ -14,6 +15,7 @@ function App() {
                     <Route path="/" element={<NftViewer />} />
                     <Route path="/stake" element={<Staking />} />
                     <Route path="/mint-firework" element={<MintFirework />} />
+                    <Route path="/bundle" element={<Bundle />} />
                 </Route>
             </Routes>
         </BrowserRouter>

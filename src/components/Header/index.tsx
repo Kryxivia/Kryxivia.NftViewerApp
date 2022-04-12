@@ -35,6 +35,11 @@ export const Header: React.FC = () => {
                                 </CustomLink>
                             </li>
                             <li>
+                                <CustomLink to="/bundle">
+                                    <span>NFT Bundles</span>
+                                </CustomLink>
+                            </li>
+                            <li>
                                 <CustomLink to="/stake">
                                     <span>Staking</span>
                                 </CustomLink>
