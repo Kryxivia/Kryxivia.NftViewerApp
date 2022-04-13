@@ -42,7 +42,7 @@ const Layout: React.FC = () => {
                         </div>
 
                     )}
-                    <div className="copy">Kryxivia © 2021. All rights reserved.</div>
+                    <div className="copy">Kryxivia © 2022. All rights reserved.</div>
                 </div>
             </main>
             <img src={IllusTop} className="top-h" alt="Kryxivia" />
