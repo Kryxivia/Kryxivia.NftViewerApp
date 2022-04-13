@@ -70,7 +70,7 @@ export const Bundle = () => {
 
     return (
         <>
-            <h1>Buy NFT Bundles</h1>
+            <h1>Buy NFT Boxes</h1>
             {nftBundles === null && (
                 <>
                     <h2>Coming soon to mainnet. Currently Alpha testing this feature on testnet.</h2>
