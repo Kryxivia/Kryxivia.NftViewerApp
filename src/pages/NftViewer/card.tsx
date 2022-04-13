@@ -23,13 +23,21 @@ const ipfsURL = (uri: string | undefined | null) => {
     return "https://ipfs.io/ipfs/" + docID
 }
 
+const ipfsCacheURL = (uri: string | undefined | null) => {
+    if (uri === undefined || uri === null) { return "" }
+    const splitLink = uri.split("//");
+    const docID = splitLink[splitLink.length - 1];
+    return "https://kryx-app-web-api.azurewebsites.net/api/v1/metadata/" + docID
+}
+
+
 function useAttributeToken(id: number, uri: string | undefined): [string | undefined, string | undefined, string | undefined, NftAttribute[]] {
     const [name, setName] = useState<string>();
     const [description, setDescription] = useState<string>();
     const [image, setImage] = useState<string>();
     const [attributes, setAttributes] = useState<NftAttribute[]>([]);
 
-    const { data } = useSWR(ipfsURL(uri), fetcher);
+    const { data } = useSWR(ipfsCacheURL(uri), fetcher);
 
     useEffect(() => {
         const fetchData = async () => {

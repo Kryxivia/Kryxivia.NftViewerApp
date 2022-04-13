@@ -26,7 +26,7 @@ function useLoadTotalSupply(chainId: number, eventCount: number) {
     return totalSupply;
 }
 
-function useLoadAccountNFTsCount(chainId: number, account: string | undefined | null, eventCount: number) {
+function useLoadAccountNFTsCount(chainId: number, account: string, eventCount: number) {
     const [ accountTokensCount, setAccountTokensCount ] = useState(0);
     const NFT_CONTRACT = CHAIN_INFO[chainId].nftContractAddress;
     const nftContract = useNftContract(NFT_CONTRACT);
@@ -44,7 +44,7 @@ function useLoadAccountNFTsCount(chainId: number, account: string | undefined | 
     return accountTokensCount;
 }
 
-function useLoadAccountNFTs(chainId: number, account: string | undefined | null, tokenCount: number, eventCount: number) {
+function useLoadAccountNFTs(chainId: number, account: string, tokenCount: number, eventCount: number) {
     const [ accountTokens, setAccountTokens ] = useState<Token[]>([]);
     const NFT_CONTRACT = CHAIN_INFO[chainId].nftContractAddress;
     const nftContract = useNftContract(NFT_CONTRACT);
