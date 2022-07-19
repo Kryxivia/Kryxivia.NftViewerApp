@@ -64,6 +64,7 @@ function useLoadAccountNFTs(chainId: number, account: string, tokenCount: number
                 }
                 tokenAccumulator.push(token);
             }
+            tokenAccumulator.reverse();
             setAccountTokens(tokenAccumulator);
         };
 
@@ -101,11 +102,18 @@ const NftViewer: React.FC = () => {
             <h1>
                 You have { accountNFTsCount } Kryxivia NFT{ accountNFTsCount === 1 ? '' : 's' }.
             </h1>
+            { accountNFTs.length == 0 && accountNFTsCount != 0 &&
+            (<div>
+                <h3>Loading your wallet Nfts..</h3>
+            </div>)
+            }
+
             <h3>
                 Total NFTs Minted: { totalSupply }
             </h3>
             <div className="nftContainer">
-            { accountNFTs.map(
+            { 
+            accountNFTs.map(
                 (nft) =>
                     <NftCard key={nft.id} NFT_ID={nft.id} IPFS_URI={nft.uri} FN_SEND_TO_GAME={sendNftToGame} ENABLE_SEND={GAME_ADDRESS ? true : false}/>
             )}

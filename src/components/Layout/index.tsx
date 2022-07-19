@@ -20,7 +20,7 @@ const Layout: React.FC = () => {
                             {chainId === 97 && (
                                 <div className="alert base">
                                     You are connected to BSC Testnet.
-                                    This is all test data. Nothing will transfer to mainnet.
+                                    This is all test data for the alpha version.
                                 </div>
                             )}
                             <div className={"app-c"}>

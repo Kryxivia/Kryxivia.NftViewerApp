@@ -42,6 +42,25 @@ export default class ManagerProvider {
         });
     }
 
+    
+    public static claimPublicAlphaAccessRequest(chainId: number, accessToken: string): Promise<MintResponse> {
+        return new Promise<MintResponse>((resolve, reject) => {
+            fetch(`${this.baseUrl(chainId)}/api/v1/alpha/claim-public-alpha`, {
+                method: "put",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${accessToken}`,
+                },
+            })
+                .then((res: any) => {
+                    res.status === 200 ? resolve(res.json() as MintResponse) : reject(res.text() as string);
+                })
+                .catch((error: any) => {
+                    reject(error)
+                });
+        });
+    }
+
     public static registerAlphaRequest(
         chainId: number,
         accessToken: string,
