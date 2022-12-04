@@ -108,13 +108,11 @@ export const StakeKxa: React.FC<StakeKxaProps> = ({chainId, accountId}) => {
     return (
         <fieldset className="stk">
             <legend>Stake your KXA now !</legend>
-            {!minStakeAmount ? (
-                <>loading</>
-            ) : (
+            {
                 <div className="ins">
                     <div className="in inm">
                         <label htmlFor="stake-amount">
-                            Amount to stake <small>(min {minStakeAmount} KXA)</small>
+                            Amount to stake <small></small>
                         </label>
                         <input
                             type="number"
@@ -138,7 +136,7 @@ export const StakeKxa: React.FC<StakeKxaProps> = ({chainId, accountId}) => {
                         </div>
                     </div>
                 </div>
-            )}
+            }
             {error && (
                 <div className="notif danger" id="stake-amount">
                     {error}

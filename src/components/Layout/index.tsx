@@ -29,7 +29,7 @@ const Layout: React.FC = () => {
                         </>
                     ) : (
                         <div className="alert base">
-                            Please switch to Binance Smart Chain Mainnet.
+                            Please switch to Ethereum Main-net or BNB Network, Polygon to access the bridge
                             <br/>
                             Or if you are playing on Alpha, Binance Smart Chain Testnet.
                             <br/><br/>
@@ -42,7 +42,12 @@ const Layout: React.FC = () => {
                         </div>
 
                     )}
-                    <div className="copy">Kryxivia © 2022. All rights reserved.</div>
+                    <div className="copy">Kryxivia © 2022. All rights reserved.
+                    
+                    {chainId === 1 && (<div style={{fontSize: 10, color: "#ff1313"}}>Connected on Ethereum network</div>)}
+                    {chainId === 56 && (<div style={{fontSize: 10, color: "#ff1313"}}>Connected on BNB network</div>)}
+                    {chainId === 97 && (<div style={{fontSize: 10, color: "#ff1313"}}>Connected on BNB testnet network</div>)}
+                    </div>
                 </div>
             </main>
             <img src={IllusTop} className="top-h" alt="Kryxivia" />

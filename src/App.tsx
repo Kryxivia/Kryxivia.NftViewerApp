@@ -7,6 +7,7 @@ import Staking from "./pages/Staking/Staking";
 import MintFirework from "./pages/MintFirework";
 import Bundle from "./pages/Bundle";
 import PublicAlpha from "./pages/PublicAlpha";
+import Bridge from "./pages/Bridge";
 
 function App() {
     return (
@@ -15,6 +16,7 @@ function App() {
                 <Route element={<Layout />}>
                     <Route path="/" element={<NftViewer />} />
                     <Route path="/stake" element={<Staking />} />
+                    <Route path="/bridge" element={<Bridge />} />
                     <Route path="/mint-firework" element={<MintFirework />} />
                     <Route path="/bundle" element={<Bundle />} />
                     <Route path="/public-alpha" element={<PublicAlpha/ >} />

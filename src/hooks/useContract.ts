@@ -4,6 +4,8 @@ import ERC20 from "../abis/KxaTokenContract.json";
 import KxaStaking from "../abis/KxaStakingContract.json";
 import Nft from "../abis/NftContract.json";
 import Bundle from "../abis/KryxiviaMysteryBoxes.json";
+import BridgeIn from "../abis/KryxiviaBridgeIn.json"
+import BridgeOut from "../abis/KryxiviaBridgeOut.json"
 import { Contract } from "ethers";
 import { useWeb3React } from "@web3-react/core";
 
@@ -51,4 +53,14 @@ export function useNftContract(ContractAddress: string) {
 
 export function useNftBundleContract(ContractAddress: string) {
   return useContract(ContractAddress, Bundle.abi);
+}
+
+export function useBridgeInContract(ContractAddress: string) 
+{
+  return useContract(ContractAddress, BridgeIn.abi);
+}
+
+export function useBridgeOutContract(ContractAddress: string) 
+{
+  return useContract(ContractAddress, BridgeOut.abi);
 }

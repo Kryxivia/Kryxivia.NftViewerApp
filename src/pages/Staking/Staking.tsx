@@ -14,6 +14,10 @@ const Staking: React.FC = () => {
 
     return (
         <div className={"app-c"}>
+            <div className="notif pending" id="stake-amount">
+            This program has ended since the private-access alpha has been terminated.
+            </div>
+          
             <h1>
                 Stake your <strong>KXA</strong> now and <strong>receive NFT Rewards</strong> !
             </h1>

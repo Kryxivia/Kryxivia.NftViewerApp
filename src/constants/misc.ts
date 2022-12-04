@@ -11,7 +11,7 @@ export interface IERC20 {
 }
 
 export const TOKENS_BY_NETWORK: { [key: number]: IERC20[] } = {
-    [SupportedChainId.MAINNET]: [
+    [SupportedChainId.MAINNET_ETH]: [
         {
             address: "0x2223bf1d7c19ef7c06dab88938ec7b85952ccd89",
             symbol: "KXA",
@@ -19,7 +19,15 @@ export const TOKENS_BY_NETWORK: { [key: number]: IERC20[] } = {
             decimals: 18,
         },
     ],
-    [SupportedChainId.TESTNET]: [
+    [SupportedChainId.MAINNET_BSC]: [
+        {
+            address: "0x2223bf1d7c19ef7c06dab88938ec7b85952ccd89",
+            symbol: "KXA",
+            name: "Kryxivia Coin",
+            decimals: 18,
+        },
+    ],
+    [SupportedChainId.TESTNET_BSC]: [
         {
             address: "0x2223bf1d7c19ef7c06dab88938ec7b85952ccd89",
             symbol: "KXA",

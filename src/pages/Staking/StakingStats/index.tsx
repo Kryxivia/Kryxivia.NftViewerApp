@@ -95,7 +95,7 @@ export const StakingStats: React.FC<StakingStatsProps> = ({chainId}) => {
                 </div>
                 <div className="in">
                     <label htmlFor="total-kxa-staked-value">Total KXA $ staked</label>
-                    <input type="text" name="total-kxa-staked-value" value={'~ ' + totalStakedValue} disabled />
+                    <input type="text" name="total-kxa-staked-value" value={'0$'} disabled />
                 </div>
             </div>
         </fieldset>
