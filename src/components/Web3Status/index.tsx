@@ -42,7 +42,7 @@ const Web3Status: React.FC = () => {
                     </div>
                 </EthSWRConfig>
             )}
-            {error && <div className="bt">{error instanceof UnsupportedChainIdError ? `Switch to Binance Smart Chain` : Error}</div>}
+            {error && <div className="bt">{error instanceof UnsupportedChainIdError ? `Wrong network` : Error}</div>}
             {(contextNetwork.active || active) && !account && <Wallet />}
         </div>
     );
