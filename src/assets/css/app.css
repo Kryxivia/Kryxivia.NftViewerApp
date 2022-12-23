@@ -37,6 +37,7 @@ picture img{max-width:100%;width:100%;}
   --opac:.5;
   --blur:blur(5px);
   --bg_rgb:7,3,1;
+  --bg_rgb_secondary:40,40,40, 0.9;
   --bg:rgb(var(--bg_rgb));
   --bg_blur:rgba(var(--bg_rgb),var(--opac));
   --txt_rgb:252,248,241;
@@ -105,6 +106,13 @@ body:before{opacity:.3;content:'';position:fixed;left:0;top:0;width:100%;height:
 .notif.danger{background-color:#fa4444;}
 .notif.success{background-color:rgb(var(--green));color:#201d1c;}
 .notif.pending{background-color:#446efa;}
+
+.modalOverlay{position:fixed;left:0;top:0;width:100%;height:100%;background-color:rgba(0,0,0,.15);z-index: 9999;opacity:1}
+.modal{position:fixed;padding:0.5rem;left:50%;top:50%;transform:translate(-50%,-50%);max-width:52rem;min-width: 0rem;display:flex;gap:0.4rem;background-color:var(--bg_blur);border-radius:var(--radius);backdrop-filter:var(--blur);box-shadow:0 0 0 1px rgba(255,255,255,.05), 0 3px 10px rgba(0,0,0,.2);z-index: 9999;opacity:1;}
+.wallet{width:23.75rem;height: 10rem; border-radius: var(--radius); background-color: var(--bg_blur);backdrop-filter:var(--blur);transition:all,200ms;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:0.4rem;}
+.wallet:hover{background-color: rgba(var(--bg_rgb_secondary));cursor:pointer; backdrop-filter:var(--blur);}
+.wallet .wallet__title{font-size:1.6rem; font-weight:600; color:var(--txt);}
+.wallet .wallet__description{font-size:1rem; color:var(--txt);}
 
 
 /*----------------------------------------------------< APP >---------------------------------------------------*/

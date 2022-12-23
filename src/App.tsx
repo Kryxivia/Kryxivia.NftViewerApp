@@ -11,18 +11,21 @@ import Bridge from "./pages/Bridge";
 
 function App() {
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route element={<Layout />}>
-                    <Route path="/" element={<NftViewer />} />
-                    <Route path="/stake" element={<Staking />} />
-                    <Route path="/bridge" element={<Bridge />} />
-                    <Route path="/mint-firework" element={<MintFirework />} />
-                    <Route path="/bundle" element={<Bundle />} />
-                    <Route path="/public-alpha" element={<PublicAlpha/ >} />
-                </Route>
-            </Routes>
-        </BrowserRouter>
+       <>
+         <BrowserRouter>
+             <Routes>
+                 <Route element={<Layout />}>
+                     <Route path="/" element={<NftViewer />} />
+                     <Route path="/stake" element={<Staking />} />
+                     <Route path="/bridge" element={<Bridge />} />
+                     <Route path="/mint-firework" element={<MintFirework />} />
+                     <Route path="/bundle" element={<Bundle />} />
+                     <Route path="/public-alpha" element={<PublicAlpha/ >} />
+                 </Route>
+             </Routes>
+         </BrowserRouter>
+         <div id="modal-root" />
+       </>
     );
 }
 

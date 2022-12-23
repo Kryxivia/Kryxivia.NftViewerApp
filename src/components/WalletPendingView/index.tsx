@@ -20,7 +20,7 @@ export const WalletPendingView: React.FC<WalletPendingViewProps> = ({ connector,
                                 setPendingError(false);
                                 connector && tryActivation(connector);
                             }}
-                        >Error connecting - Try Again <span aria-hidden="true">&rarr;</span>
+                        >Connect error - Refresh or Try Again <span aria-hidden="true">&rarr;</span>
                         </button>
                 ) : (
                     <div className="bt">

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { UnsupportedChainIdError, useWeb3React } from "@web3-react/core";
-import { ReactComponent as MetamaskIcon } from "../../assets/img/metamask.svg";
 import { WalletPendingView } from "../WalletPendingView";
 import { injected } from "../../connectors";
+import WalletSelectionModal from "./WalletSelectionModal";
 
 const WALLET_VIEWS = {
     OPTIONS: "options",
@@ -17,6 +17,7 @@ export const Wallet: React.FC = () => {
     const [walletView, setWalletView] = useState(WALLET_VIEWS.ACCOUNT);
 
     const [pendingError, setPendingError] = useState<boolean>();
+    const [isWalletModalOpen, setIsWalletModalOpen] = useState<boolean>();
 
     useEffect(() => {
         setPendingError(false);
@@ -55,10 +56,14 @@ export const Wallet: React.FC = () => {
         return walletView === WALLET_VIEWS.PENDING ? (
             <WalletPendingView connector={injected} error={pendingError} setPendingError={setPendingError} tryActivation={tryActivation} />
         ) : (
-            <button className="bt bt-p" onClick={tryActivation}>
-                <span>Connect with Metamask</span>
-                <MetamaskIcon />
-            </button>
+            <div>
+                { isWalletModalOpen &&
+                    <WalletSelectionModal setIsWalletModalOpen={setIsWalletModalOpen} tryActivation={tryActivation} />
+                }
+                <button className="bt bt-p" onClick={() => setIsWalletModalOpen(true)}>
+                    <span>Connect wallet</span>
+                </button>
+            </div>
         );
     }
 
