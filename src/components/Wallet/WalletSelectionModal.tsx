@@ -1,9 +1,10 @@
 import { useWeb3React } from '@web3-react/core';
 import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom';
-import { injected } from '../../connectors';
+import { walletConnectConnector, injected } from '../../connectors';
 import { ReactComponent as MetamaskIcon } from "../../assets/img/metamask.svg";
 import BitkeepIcon from "../../assets/img/bitkeepwallet.png";
+import 'buffer/';
 
 interface WalletSelectionModalProps {
     setIsWalletModalOpen: (isOpen: boolean) => void;
@@ -12,7 +13,7 @@ interface WalletSelectionModalProps {
 
 const WalletSelectionModal = ({ setIsWalletModalOpen, tryActivation }: WalletSelectionModalProps) => {
 
-    const { activate } = useWeb3React();
+    const { activate, active } = useWeb3React();
 
     const [mounted, setMounted] = useState(false)
 
@@ -29,7 +30,7 @@ const WalletSelectionModal = ({ setIsWalletModalOpen, tryActivation }: WalletSel
         const handleAccountsChanged = (accounts: string[]) => {
             if (accounts.length > 0) {
                 // eat errors
-                activate(injected, undefined, true).catch((error) => {
+                activate(walletConnectConnector, undefined, true).catch((error) => {
                     console.error('Failed to activate after accounts changed', error)
                 })
             }
@@ -39,6 +40,7 @@ const WalletSelectionModal = ({ setIsWalletModalOpen, tryActivation }: WalletSel
         const BitKeepProvider = browserwindow?.bitkeep && browserwindow?.bitkeep.ethereum;
 
         await BitKeepProvider.request({ method: 'eth_requestAccounts' });
+        if(active) handleAccountsChanged([BitKeepProvider.selectedAddress])
     };
     
     if(mounted) {

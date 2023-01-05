@@ -1,6 +1,8 @@
 import { InjectedConnector } from "@web3-react/injected-connector";
+import { WalletConnectConnector } from '@web3-react/walletconnect-connector';
 import { ALL_SUPPORTED_CHAIN_IDS, SupportedChainId } from "../constants/chain";
 import { NetworkConnector } from "./NetworkConnector";
+import 'buffer/';
 
 const NETWORK_URLS: { [key in SupportedChainId]: string } = {
     [SupportedChainId.MAINNET_BSC]: `https://bsc-dataseed.binance.org/`,
@@ -15,3 +17,12 @@ export const network = new NetworkConnector({
 export const injected = new InjectedConnector({
     supportedChainIds: ALL_SUPPORTED_CHAIN_IDS,
 });
+
+const rpc:any = {};
+for (const id of ALL_SUPPORTED_CHAIN_IDS) {
+  rpc[id] = SupportedChainId.MAINNET_ETH;
+}
+
+export const walletConnectConnector = new WalletConnectConnector({
+  rpcUrl: SupportedChainId.MAINNET_ETH
+} as any);
