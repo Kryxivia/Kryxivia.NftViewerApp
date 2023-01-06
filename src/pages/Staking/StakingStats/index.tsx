@@ -14,8 +14,8 @@ function useTotalLocked(chainId: number) {
 
     useEffect(() => {
         const fetchData = async () => {
-            const result = await tokenContract.balanceOf(STAKING_CONTRACT_ADDRESS);
-            setAmount(Number(formatUnits(result, 18)));
+            //const result = await tokenContract.balanceOf(STAKING_CONTRACT_ADDRESS);
+            setAmount(Number(formatUnits(0, 18)));
         };
 
         fetchData();
@@ -34,8 +34,8 @@ function useTotalStakers(chainId: number) {
             if (stakingContract == null) {
                 return;
             }
-            const result = await stakingContract.getTotalStakers();
-            const convert = BigNumber.from(result);
+            //const result = await stakingContract.getTotalStakers();
+            const convert = BigNumber.from(0);
             setAmount(convert.toNumber());
         };
 

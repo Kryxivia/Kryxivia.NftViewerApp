@@ -33,17 +33,13 @@ const Layout: React.FC = () => {
                             <br/>
                             Or if you are playing on Alpha, Binance Smart Chain Testnet.
                             <br/><br/>
-                            <a href={"https://academy.binance.com/en/articles/connecting-metamask-to-binance-smart-chain"}
-                               target="_blank"
-                               rel="noreferrer"
-                            >
-                                <u>Instructions for Configuring Metamask.</u>
-                            </a>
+                            <a target="_blank" href="https://wiki.polygon.technology/docs/develop/metamask/config-polygon-on-metamask/"> <u>To view your NFTs and import them in-game, please switch to Polygon network</u></a>
                         </div>
 
                     )}
                     <div className="copy">Kryxivia © 2022. All rights reserved.
                     
+                    {chainId === 137 && (<div style={{fontSize: 10, color: "#ff1313"}}>Connected on Polygon network</div>)}
                     {chainId === 1 && (<div style={{fontSize: 10, color: "#ff1313"}}>Connected on Ethereum network</div>)}
                     {chainId === 56 && (<div style={{fontSize: 10, color: "#ff1313"}}>Connected on BNB network</div>)}
                     {chainId === 97 && (<div style={{fontSize: 10, color: "#ff1313"}}>Connected on BNB testnet network</div>)}

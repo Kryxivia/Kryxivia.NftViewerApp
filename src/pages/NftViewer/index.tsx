@@ -99,26 +99,30 @@ const NftViewer: React.FC = () => {
 
     return (
         <div className="nftPage">
-            <h1>
-                You have { accountNFTsCount } Kryxivia NFT{ accountNFTsCount === 1 ? '' : 's' }.
-            </h1>
-            { accountNFTs.length == 0 && accountNFTsCount != 0 &&
-            (<div>
-                <h3>Loading your wallet Nfts..</h3>
-            </div>)
-            }
+            To have a better view and trade your NFTs please browse at <u><a target="_blank" href="https://opensea.io/collection/kryxivia">opensea.io/collection/kryxivia</a></u>
+            {CHAIN_ID == 137 && <div>
+                <h1>
+                    You have { accountNFTsCount } Kryxivia NFT{ accountNFTsCount === 1 ? '' : 's' }.
+                </h1>
+                { accountNFTs.length == 0 && accountNFTsCount != 0 &&
+                (<div>
+                    <h3>Loading your wallet Nfts..</h3>
+                </div>)
+                }
 
-            <h3>
-                Total NFTs Minted: { totalSupply }
-            </h3>
-            <div className="nftContainer">
-            { 
-            accountNFTs.map(
-                (nft) =>
-                    <NftCard key={nft.id} NFT_ID={nft.id} IPFS_URI={nft.uri} FN_SEND_TO_GAME={sendNftToGame} ENABLE_SEND={GAME_ADDRESS ? true : false}/>
-            )}
-            </div>
-            <br/>
+                <h3>
+                    Total NFTs Minted: { totalSupply }
+                </h3>
+                <div className="nftContainer">
+                { 
+                accountNFTs.map(
+                    (nft) =>
+                        <NftCard key={nft.id} NFT_ID={nft.id} IPFS_URI={nft.uri} FN_SEND_TO_GAME={sendNftToGame} ENABLE_SEND={GAME_ADDRESS ? true : false}/>
+                )}
+                </div>
+                <br/>
+            </div>}
+        {CHAIN_ID != 137 &&  <a target="_blank" href="https://wiki.polygon.technology/docs/develop/metamask/config-polygon-on-metamask/"><br/><br/><u>Please switch to Polygon network to view your wallet NFTs and send them in-game. How to ?</u></a>}
         </div>
     );
 };
