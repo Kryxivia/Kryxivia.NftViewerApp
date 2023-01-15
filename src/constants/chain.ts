@@ -100,7 +100,7 @@ export const CHAIN_INFO: ChainInfo = {
     bridgeOutContract: "0x3A45DE9d92B45E29Eb46C2554cd70B9aa7FC6ACC",
     nftContractAddress: "0xc903De9B38dca27F269d7f7890D787d398b8c991",
     stakingContractAddress: "0x57613EeE7Fb9E3B311E1Fe1BF7B42b664f65AC89",
-    gameAddress: "0xF12B9851FA386be7cA8068b566DB4fAE8684d8BF",
+    gameAddress: "0xAFff05E6d4EB404170f4CB45BAae766433fe1545",
     nftBundles: "0x4A67108DF75A841D725e8b7C88d729A7Ed451c01",
     explorer: 'https://testnet.bscscan.com/',
     apiURL: "https://kryx-app-web-api.azurewebsites.net",
